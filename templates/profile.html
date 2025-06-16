@@ -28,13 +28,18 @@
 </head>
 <body class="bg-green-100">
 
-  <div class="h-full min-h-screen flex items-center justify-center px-6 py-12">
+  <div class="h-full min-h-screen flex items-center flex-col justify-center px-6 pb-12">
+    <div class="flex flex-row items-center space-x-4 justify-between w-full max-w-md pl-2 pr-2">
+    <img src="/static/assets/Finverse_logo.png" alt="Finverse Logo" class="my-5  w-32 h-auto"/>
+    <img src="/static/assets/psgtech_logo.png" alt="Psgtech Logo" class="my-5 w-auto h-12"/>
+    </div>
     <div class="w-full max-w-md p-6 rounded-lg bg-white shadow-lg border border-black">
+
+      
 
       <!-- Name and Roll -->
       <h1 class="text-3xl font-bold text-black">{{ name }}</h1>
       <p class="text-sm text-gray-600 mb-6">Roll: {{ roll }}</p>
-
       <!-- Batch, Course, Semester -->
       <div class="mb-6">
         <p class="text-gray-800"><strong>Batch:</strong> {{ batch }}</p>
@@ -45,6 +50,11 @@
       <!-- Form -->
       <form action="/submit" method="POST" class="space-y-4">
 
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="roll" value="{{ roll }}">
+        <input type="hidden" name="semester" value="{{ semester }}">
+        <input type="hidden" name="course" value="{{ course }}">
+        <input type="hidden" name="batch" value="{{ batch }}">
         <!-- Email -->
         <div>
           <label class="block text-gray-700 font-medium mb-1" for="email" required>Email</label>
@@ -55,7 +65,7 @@
         <!-- Contact -->
         <div>
           <label class="block text-gray-700 font-medium mb-1" for="contact" required>Contact</label>
-          <input type="text" name="contact" id="contact" value="{{ contact }}"
+          <input type="number" min="0" max="9999999999" name="contact" id="contact" value="{{ contact }}"
             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
         </div>
 
@@ -91,7 +101,7 @@
         </div>
 
         <!-- Reason Textarea1 -->
-        <div id="whycontainer1" class="hidden">
+        <div id="whycontainer1" name="whycontainer1" class="hidden">
           <label id="whytitle1" class="block text-gray-700 font-medium mb-1" for="reason">Why do you want to join?</label>
           <textarea name="reason" id="reason" rows="4"
             class="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500"  required></textarea>
@@ -129,10 +139,11 @@
         </div>
 
         <!-- Reason Textarea2 -->
-        <div id="whycontainer2" class="hidden">
+        <div id="whycontainer2" name="whycontainer2" class="hidden">
           <label id="whytitle2" class="block text-gray-700 font-medium mb-1" for="reason">Why do you want to join?</label>
-          <textarea name="reason" id="reason" rows="4"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+          <p class="text-gray-400 font-small mb-2">(Optional)</p>
+          <textarea name="reason2" id="reason" rows="4"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
         </div>
 
         <!-- Submit Button -->
